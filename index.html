@@ -1,0 +1,671 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Onuoha Ezinne Esther | Software Engineer, FullStack Developer & Senior Frontend Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --brown: #5ebe09;
+      --brown-light: #5ebe09;
+      --cream: #fdf6ed;
+      --cream-dark: #f5e9d6;
+      --text: #1a1208;
+      --muted: #7a6a55;
+      --border: #e2d4be;
+      --white: #ffffff;
+      --tag-bg: #f0e4cc;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1rem 5%;
+      background: rgba(253,246,237,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .nav-logo a {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.95rem;
+      color: var(--brown);
+      text-decoration: none;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    .nav-links { display: flex; align-items: center; gap: 2rem; }
+    .nav-links a {
+      text-decoration: none; color: var(--text); font-size: 0.875rem;
+      font-weight: 500; transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--brown); }
+
+    .nav-actions { display: flex; align-items: center; gap: 0.75rem; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      padding: 0.55rem 1.2rem;
+      border-radius: 999px; font-size: 0.875rem; font-weight: 600;
+      cursor: pointer; text-decoration: none; transition: all 0.2s;
+      border: none;
+    }
+    .btn-outline {
+      border: 1.5px solid var(--brown); color: var(--brown); background: transparent;
+    }
+    .btn-outline:hover { background: var(--brown); color: var(--white); }
+    .btn-solid { background: var(--brown); color: var(--white); }
+    .btn-solid:hover { background: var(--brown-light); }
+    .btn-ghost { color: var(--muted); font-size: 0.875rem; background: transparent; }
+
+    /* ── HERO ── */
+    #intro {
+      min-height: 100vh;
+      display: flex; flex-direction: column; justify-content: center;
+      padding: 7rem 5% 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    #intro::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse 70% 60% at 80% 50%, rgba(65,34,1,0.07) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .hero-eyebrow {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem; letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--brown); margin-bottom: 1.5rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .hero-eyebrow::before {
+      content: ''; display: block; width: 2.5rem; height: 1.5px; background: var(--brown);
+    }
+
+    .hero-name {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(3.5rem, 9vw, 8rem);
+      font-weight: 900; line-height: 0.95;
+      color: var(--brown); letter-spacing: -0.03em;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-sub {
+      font-size: clamp(1rem, 2.5vw, 1.25rem);
+      color: var(--muted); font-weight: 400;
+      max-width: 42rem; margin-bottom: 2.5rem;
+    }
+
+    .hero-ctas { display: flex; flex-wrap: wrap; gap: 1rem; }
+
+    .hero-scroll {
+      position: absolute; bottom: 2.5rem; left: 5%;
+      font-family: 'Space Mono', monospace; font-size: 0.72rem;
+      letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted);
+      display: flex; align-items: center; gap: 0.6rem;
+    }
+    .hero-scroll::after {
+      content: ''; display: block; width: 3rem; height: 1px; background: var(--muted);
+    }
+
+    /* ── SECTIONS ── */
+    section { padding: 6rem 5%; }
+
+    .section-label {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.78rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--brown); margin-bottom: 0.75rem;
+      display: flex; align-items: center; gap: 0.75rem;
+    }
+    .section-label::before {
+      content: ''; display: block; width: 1.5rem; height: 1.5px; background: var(--brown);
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      font-weight: 700; color: var(--brown); line-height: 1.15;
+      margin-bottom: 2.5rem;
+    }
+
+    /* ── ABOUT ── */
+    #about { background: var(--white); }
+
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 5rem; align-items: start; margin-top: 3rem;
+    }
+
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-wrap::after {
+      content: ''; position: absolute;
+      top: 1.5rem; left: 1.5rem;
+      inset: 0; border: 2px solid var(--brown);
+      border-radius: 4px; z-index: 0;
+      transform: translate(10px,10px);
+    }
+    .about-img-wrap img {
+      width: 100%; border-radius: 4px;
+      position: relative; z-index: 1;
+      display: block; object-fit: cover;
+    }
+
+    .about-text h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.5rem, 3.5vw, 2.2rem);
+      font-weight: 700; color: var(--brown);
+      margin-bottom: 1.25rem; line-height: 1.25;
+    }
+    .about-text p { color: var(--muted); font-size: 1rem; margin-bottom: 1rem; }
+
+    /* ── EDUCATION & EXPERIENCE ── */
+    #education-experience { background: var(--cream); }
+
+    .edu-exp-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 4rem; margin-top: 3rem;
+    }
+
+    .timeline-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.4rem; color: var(--brown); margin-bottom: 2rem;
+      padding-bottom: 0.75rem; border-bottom: 2px solid var(--border);
+    }
+
+    .timeline-item {
+      padding: 1.5rem 0 1.5rem 1.5rem;
+      border-left: 2px solid var(--border);
+      position: relative; margin-bottom: 0.5rem;
+    }
+    .timeline-item::before {
+      content: ''; position: absolute;
+      left: -5px; top: 1.75rem;
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--brown);
+    }
+
+    .timeline-date {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.75rem; letter-spacing: 0.08em;
+      color: var(--brown); margin-bottom: 0.4rem;
+    }
+    .timeline-org {
+      font-size: 0.82rem; color: var(--muted); font-weight: 500; margin-bottom: 0.25rem;
+    }
+    .timeline-item h4 { font-size: 1rem; font-weight: 600; color: var(--text); margin-bottom: 0.5rem; }
+    .timeline-item p { font-size: 0.9rem; color: var(--muted); line-height: 1.65; }
+
+    /* ── SKILLS ── */
+    #skills { background: var(--white); }
+
+    .skills-intro { color: var(--muted); max-width: 44rem; margin-bottom: 3rem; }
+
+    .skills-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .skill-card {
+      background: var(--cream); border: 1px solid var(--border);
+      border-radius: 8px; padding: 1.5rem;
+    }
+    .skill-card h3 {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--brown); margin-bottom: 1rem;
+    }
+    .tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .tag {
+      background: var(--tag-bg); color: var(--brown);
+      font-size: 0.78rem; font-weight: 600;
+      padding: 0.3rem 0.75rem; border-radius: 999px;
+    }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--cream); }
+
+    .projects-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem; margin-top: 3rem;
+    }
+
+    .project-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s;
+    }
+    .project-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(65,34,1,0.1); }
+
+    .project-img {
+      width: 100%; aspect-ratio: 16/9;
+      background: var(--cream-dark);
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    .project-img img { width: 100%; height: 100%; object-fit: cover; }
+    .project-img .img-placeholder {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.8rem; color: var(--muted); letter-spacing: 0.1em;
+    }
+
+    .project-body { padding: 1.5rem; }
+    .project-body h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.15rem; font-weight: 700;
+      color: var(--text); margin-bottom: 0.75rem;
+    }
+    .project-body p { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; line-height: 1.65; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1rem; }
+    .project-tag {
+      background: var(--tag-bg); color: var(--brown);
+      font-size: 0.72rem; font-weight: 600;
+      padding: 0.25rem 0.6rem; border-radius: 999px;
+    }
+    .project-links { display: flex; gap: 0.75rem; }
+    .project-links a {
+      font-size: 0.82rem; font-weight: 600; color: var(--brown);
+      text-decoration: none; border-bottom: 1px solid var(--brown);
+      padding-bottom: 1px; transition: opacity 0.2s;
+    }
+    .project-links a:hover { opacity: 0.65; }
+
+    .projects-more { text-align: center; margin-top: 2.5rem; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--white); }
+
+    .contact-grid {
+      display: grid; grid-template-columns: 1.4fr 1fr;
+      gap: 4rem; margin-top: 3rem;
+    }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.4rem; }
+    .form-group label { font-size: 0.85rem; font-weight: 600; color: var(--text); }
+    .form-group input, .form-group textarea {
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border); border-radius: 6px;
+      background: var(--cream); font-family: 'DM Sans', sans-serif;
+      font-size: 0.95rem; color: var(--text);
+      outline: none; transition: border-color 0.2s;
+    }
+    .form-group input:focus, .form-group textarea:focus { border-color: var(--brown); }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+
+    .contact-details h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--brown); margin-bottom: 1.5rem;
+    }
+    .contact-item {
+      display: flex; flex-direction: column; gap: 0.15rem;
+      margin-bottom: 1.25rem; padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-item:last-child { border-bottom: none; }
+    .contact-item .contact-type {
+      font-family: 'Space Mono', monospace;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .contact-item a {
+      color: var(--brown); text-decoration: none; font-weight: 600;
+      font-size: 0.9rem; transition: opacity 0.2s;
+    }
+    .contact-item a:hover { opacity: 0.7; }
+
+    /* ── TESTIMONIALS ── */
+    #testimonials { background: var(--cream); }
+
+    .testimonials-grid {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem; margin-top: 3rem;
+    }
+
+    .testimonial-card {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 10px; padding: 1.75rem;
+    }
+    .testimonial-card p {
+      font-size: 0.93rem; color: var(--muted); line-height: 1.7;
+      margin-bottom: 1.25rem; font-style: italic;
+    }
+    .testimonial-card p::before { content: '\201C'; color: var(--brown); font-size: 1.5rem; line-height: 0; vertical-align: -0.35em; margin-right: 0.1rem; }
+    .testimonial-card p::after  { content: '\201D'; color: var(--brown); font-size: 1.5rem; line-height: 0; vertical-align: -0.35em; margin-left:  0.1rem; }
+    .testimonial-author h4 { font-weight: 700; font-size: 0.9rem; color: var(--text); }
+    .testimonial-author span { font-size: 0.82rem; color: var(--muted); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--brown); color: var(--cream);
+      padding: 2.5rem 5%;
+      display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between;
+      gap: 1rem;
+    }
+    footer .footer-left p { font-size: 0.9rem; opacity: 0.85; }
+    footer .footer-left span { font-family: 'Playfair Display', serif; font-weight: 700; }
+    footer .footer-sub { font-size: 0.8rem; opacity: 0.6; margin-top: 0.25rem; }
+
+    footer .footer-links { display: flex; gap: 1.25rem; }
+    footer .footer-links a {
+      color: var(--cream); opacity: 0.75; font-size: 0.85rem;
+      text-decoration: none; transition: opacity 0.2s;
+    }
+    footer .footer-links a:hover { opacity: 1; }
+
+    /* ── DIVIDER ── */
+    .divider { height: 1px; background: var(--border); margin: 0 5%; }
+
+    /* ── MOBILE ── */
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .about-grid, .edu-exp-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-img-wrap { max-width: 320px; }
+      .hero-name { font-size: clamp(2.8rem, 14vw, 5rem); }
+    }
+
+    /* ── ANIMATIONS ── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .fade-up { animation: fadeUp 0.7s ease both; }
+    .delay-1 { animation-delay: 0.1s; }
+    .delay-2 { animation-delay: 0.22s; }
+    .delay-3 { animation-delay: 0.38s; }
+    .delay-4 { animation-delay: 0.52s; }
+  </style>
+</head>
+<body>
+
+  <!-- ── NAV ── -->
+  <nav>
+    <div class="nav-logo"><a href="#intro"><b>ONUOHA</b> EZINNE ESTHER</a></div>
+    <div class="nav-links">
+      <a href="#intro">Home</a>
+      <a href="#about">About</a>
+      <a href="#education-experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <div class="nav-actions">
+      <a class="btn btn-outline" href="https://www.onuohaezinneesther.com/Onuoha-Ezinne-Esther-Resume.pdf" target="_blank">Resume</a>
+      <a class="btn btn-solid" href="https://wa.me/2348099059208?text=Hi%20Onuoha%2C%20I%20came%20from%20your%20portfolio%20website." target="_blank">Say Hi</a>
+    </div>
+  </nav>
+
+  <!-- ── HERO ── -->
+  <section id="intro">
+    <div class="hero-eyebrow fade-up">Software Engineer | Cybersecurity Specialist | Economist</div>
+    <h1 class="hero-name fade-up delay-1">ONUOHA<br>EZINNE ESTHER</h1>
+    <p class="hero-sub fade-up delay-2">Software Engineer | Full Stack Developer | Economist &amp; Cybersecurity Specialist</p>
+    <div class="hero-ctas fade-up delay-3">
+      <a class="btn btn-solid" href="#projects">View Projects</a>
+      <a class="btn btn-outline" href="#contact">Contact Me</a>
+      <a class="btn btn-ghost" href="https://www.onuohaezinneesther.com/Onuoha-Ezinne-Esther-Resume.pdf" target="_blank">↓ Download CV</a>
+    </div>
+    <div class="hero-scroll">Scroll to explore</div>
+  </section>
+
+  <!-- ── ABOUT ── -->
+  <section id="about">
+    <div class="section-label">About Me</div>
+    <div class="about-grid">
+      <div class="about-img-wrap">
+        <img src="assets/Zinnie.jpeg" alt="Onuoha Ezinne Esther" />
+      </div>
+      <div class="about-text">
+        <h2>I build with clarity, precision, and purpose.</h2>
+        <p>I am Onuoha Ezinne Esther, a Software Engineer,Cybersecurity Specialist and an Economist who approaches every project with the mindset of building something useful, professional, useable and dependable. My work is shaped by strong attention to detail, clean execution, time efficiency and the ability to turn ideas into digital products that feel structured, and ready for real users.</p>
+        <p>With a foundation in STEM and a growing record of practical software projects, I bring analytical thinking and product awareness into every build. Whether I am creating a portfolio, business platform, dashboard, API-driven product, or full web application, my focus remains the same: quality, usability, performance, scalability and solutions that can grow beyond the first version.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── EDUCATION & EXPERIENCE ── -->
+  <section id="education-experience">
+    <div class="section-label">Education &amp; Experience</div>
+    <div class="edu-exp-grid">
+
+      <!-- Education -->
+      <div class="timeline-col">
+        <h3>Education</h3>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Feburary 2026</div>
+          <div class="timeline-org">Jenga Tech Institute</div>
+          <h4>Certificate in Software Engineering and cybersecurity (In-view)</h4>
+          <p>I earned a Certificate in Software Engineering and cybersecurity from Jenga Tech Institute in May 2026, where I delved deep into the core of modern software development and cybersecurity principles. The program emphasized hands-on learning with tools such as JavaScript, React, Next.js, Tailwind CSS, Python, Django and Git/GitHub, giving me the skills to build both front-end and back-end projects. Beyond coding, I also learned best practices in problem-solving, critical thinking, debugging, and version control.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">May 2026</div>
+          <div class="timeline-org">Micheal Okpara University of Agriculture</div>
+          <h4>Master of Science International Economics</h4>
+          <p>My time at Micheal Okpara University of Agriculture studying International Economics was a fantastic experience. It was a hands-on program where I dove deep into fields like Econometrics and data analysis. That education taught me to be incredibly detail-oriented and to think analytically under pressure—skills I use every single day in software engineering.</p>
+        </div>
+      </div>
+
+      <!-- Experience -->
+      <div class="timeline-col">
+        <h3>Experience</h3>
+
+        <div class="timeline-item">
+          <!-- <div class="timeline-date">January 2026 – July 2026 (inview)</div> -->
+          <div class="timeline-org">Iyconsoft Solutions</div>
+          <h4>Data Analyst/Product Team Lead &amp; Operations and customer service</h4>
+          <p>As a Data Analyst/Product Team Lead, I contributed to the development of robust web applications and collaborated with cross-functional teams to deliver high-quality software solutions. As a product team lead, I managed the development process and ensured alignment with business objectives. This role refined my  skills while fostering a collaborative and innovative environment.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Jan 2020 – Date</div>
+          <div class="timeline-org">Civil Service Commission</div>
+          <h4>Planning And Reporting Officer</h4>
+          <p> I am responsible for formulating strategic, short, and medium-term plans, monitoring and evaluating projects, conducting research, and managing statistical data to support evidence-based policy formulation and implementation in government ministries and agencies. This role has honed my organizational and analytical skills, as well as my ability to manage complex projects and collaborate with diverse teams.</p>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-date">Sept 2019 – Date</div>
+          <div class="timeline-org">Keystone Bank Limited</div>
+          <h4>Customer Service And Sales Associate</h4>
+          <p> I am responsible for providing excellent customer service and supporting sales initiatives. This role has enhanced my communication and interpersonal skills, as well as my ability to understand and meet customer needs.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── SKILLS ── -->
+  <section id="skills">
+    <div class="section-label">Skills</div>
+    <h2 class="section-title" style="margin-bottom:0.75rem;">What I work with</h2>
+    <p class="skills-intro">My skill set covers frontend engineering, backend development, database systems, deployment, and the professional habits needed to deliver reliable software and cybersecurity practices.</p>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <h3>Frontend</h3>
+        <div class="tags">
+          <span class="tag">Next.js</span><span class="tag">React.js</span><span class="tag">TypeScript</span>
+          <span class="tag">JavaScript</span><span class="tag">Framer-Motion</span><span class="tag">Tailwind CSS</span>
+          <span class="tag">Zustand</span><span class="tag">Shadcn UI</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Backend</h3>
+        <div class="tags">
+          <span class="tag">Python</span><span class="tag">FastAPI</span><span class="tag">Redis</span>
+          <span class="tag">JWT</span><span class="tag">OAuth2</span><span class="tag">REST APIs</span>
+          <span class="tag">Authentication</span><span class="tag">API Integration</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Database</h3>
+        <div class="tags">
+          <span class="tag">PostgreSQL</span><span class="tag">MongoDB</span><span class="tag">SQLite</span>
+          <span class="tag">Database Design</span><span class="tag">Query Logic</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Tools &amp; Deployment</h3>
+        <div class="tags">
+          <span class="tag">Git</span><span class="tag">GitHub</span><span class="tag">Vercel</span>
+          <span class="tag">Netlify</span><span class="tag">Render</span><span class="tag">Railway</span>
+          <span class="tag">Docker</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>Professional Skills</h3>
+        <div class="tags">
+          <span class="tag">Problem Solving</span><span class="tag">Communication</span>
+          <span class="tag">Team Collaboration</span><span class="tag">Debugging</span>
+          <span class="tag">Adaptability</span><span class="tag">Product Thinking</span>
+        </div>
+      </div>
+      <div class="skill-card">
+        <h3>AI Systems &amp; Automation</h3>
+        <div class="tags">
+          <span class="tag">OpenAI API</span><span class="tag">WhatsApp Cloud API</span>
+          <span class="tag">AI-Powered Chatbots</span><span class="tag">AI-Driven Automation</span>
+          <span class="tag">AI Integration in Web Apps</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+     
+
+    <div class="projects-more">
+      <a class="btn btn-outline" href="https://github.com/softwaredevEzinneO" target="_blank">See More Projects on GitHub ↗</a>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── CONTACT ── -->
+  <section id="contact">
+    <div class="section-label">Contact</div>
+    <h2 class="section-title">Let's Work Together</h2>
+    <p style="color:var(--muted); max-width:40rem; margin-bottom:1rem;">Reach out for collaborations, frontend development, full-stack projects, freelance work, or software engineering opportunities.</p>
+
+    <div class="contact-grid">
+      <div class="contact-form">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" placeholder="Ezinne Esther Onuoha" />
+        </div>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" placeholder="hello@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" placeholder="Tell me about your project…"></textarea>
+        </div>
+        <button class="btn btn-solid" style="align-self:flex-start;" onclick="alert('Message sent!')">Send Message</button>
+      </div>
+
+      <div class="contact-details">
+        <h3>Contact Details</h3>
+        <p style="color:var(--muted); font-size:0.9rem; margin-bottom:1.5rem;">You can contact me directly through email or connect with me on LinkedIn and GitHub.</p>
+
+        <div class="contact-item">
+          <span class="contact-type">Email</span>
+          <a href="mailto:esthyonuoha10@gmail.com">esthyonuoha10@gmail.com</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-type">LinkedIn</span>
+          <a href="https://www.linkedin.com/in/Ezinne Esther Onuoha" target="_blank">linkedin.com/in/Ezinne Esther Onuoha</a>
+        </div>
+        <div class="contact-item">
+          <span class="contact-type">GitHub</span>
+          <a href="https://github.com/softwaredevEzinneO" target="_blank">github.com/softwaredevEzinneO</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="divider"></div>
+
+  <!-- ── TESTIMONIALS ── -->
+  <section id="testimonials">
+    <div class="section-label">Recommendations</div>
+    <h2 class="section-title">What People Say</h2>
+    <p style="color:var(--muted); max-width:44rem;">Feedback from people I have worked with across software development, training, collaboration, and project delivery.</p>
+
+    <div class="testimonials-grid">
+
+      <div class="testimonial-card">
+        <p>Ezinne is a highly skilled developer with a keen eye for detail. His work on our project significantly improved our user experience. He has a strong foothold in frontend technologies.</p>
+        <div class="testimonial-author">
+          <h4>Roland Onyekwere</h4>
+          <span>CEO, Jenga Tech</span>
+        </div>
+      </div>
+
+      <div class="testimonial-card">
+        <p>I had the pleasure of working with Ezinne on several projects. His ability to adapt to new technologies and frameworks is impressive. He consistently delivers high-quality work on time.</p>
+        <div class="testimonial-author">
+          <h4>Wisdom Njimogu</h4>
+          <span>Software Engineer</span>
+        </div>
+      </div>
+
+        <div class="testimonial-card">
+            <p>Ezinne's dedication to his craft is evident in every project he undertakes. He is a proactive problem solver and a great team player. I highly recommend him for any software development role.</p>
+            <div class="testimonial-author">
+            <h4>Solomon Banjo</h4>
+            <span>Product Manager</span>
+            </div>
+
+    
+
+    
+
+
+
+    </div>
+  </section>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <div class="footer-left">
+      <p><span>Onuoha Ezinne Esther</span> © 2026</p>
+      <p class="footer-sub">Software Engineer | Full Stack Developer | Cybersecurity Analyst | Economist </p>
+    </div>
+    <div class="footer-links">
+      <a href="mailto:esthyonuoha10@gmail.com">Email</a>
+      <a href="https://www.linkedin.com/in/Ezinne Esther Onuoha" target="_blank">LinkedIn</a>
+      <a href="https://github.com/softwaredevEzinneO" target="_blank">GitHub</a>
+    </div>
+  </footer>
+
+</body>
+</html>
